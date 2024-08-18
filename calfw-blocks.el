@@ -1379,14 +1379,13 @@ is added at the beginning of a block to indicate it is the beginning."
          (dest (cfw:component-dest component)))
     (with-current-buffer buf
       (cfw:dest-before-update dest)
-      (cfw:dest-ol-selection-clear dest)
       (cfw:dest-ol-today-clear dest)
       (let ((buffer-read-only nil))
         (cfw:dest-with-region dest
-                              (cfw:dest-clear dest)
-                              (funcall (cfw:cp-dispatch-view-impl
-                                        (cfw:component-view component))
-                                       component)))
+          (cfw:dest-clear dest)
+          (funcall (cfw:cp-dispatch-view-impl
+                    (cfw:component-view component))
+                   component)))
       (if (eq (cfw:component-view component) 'block-week)
           (calfw-blocks-dest-ol-today-set dest)
         (when cfw:highlight-today (cfw:dest-ol-today-set dest)))
